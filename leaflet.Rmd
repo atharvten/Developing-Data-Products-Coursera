@@ -1,0 +1,39 @@
+---
+title: "Leaflet Map"
+author: "Atharv Tendolkar"
+date: "23/10/21"
+output: html_document
+---
+
+This project will involve Rmarkdown file to make
+Leaflet map and display on webpage
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Leaflet Map
+Map object created of leaflet
+```{r cars}
+library(leaflet)
+map <- leaflet() %>% addTiles()
+```
+
+A marker to the palace and link to home is shown
+
+```{r}
+benrathPalaceIcon <- makeIcon(
+   iconUrl = "http://www.schloss-benrath.de/fileadmin/_processed_/csm_corps-de-logis-blumen_2e04b2b859.jpg",
+   iconWidth = 30*408/255, iconHeight = 30,
+   iconAnchorX = 30*408/255/2, iconAnchorY = 30/2
+)
+```
+
+Display map 
+```{r}
+benrathPalacePopup <- c("<a href= 'http://www.schloss-benrath.de/welcome/?L=1' >Benrath Palace<br><img src='http://www.schloss-benrath.de/fileadmin/_processed_/csm_corps-de-logis-blumen_2e04b2b859.jpg' width='210' height='132'  alt='Foto Corps de Logis' title='Foto Corps de Logi'></a>")
+map %>%
+   addTiles() %>%
+   addMarkers(lat=51.161027, lng=6.870550, popup = benrathPalacePopup)
+```
